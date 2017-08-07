@@ -41,7 +41,7 @@ while True:
     for x in range(0,30):
         while not radio2.available():
             print("No radio available yet.")
-            time.sleep(1000)
+            time.sleep(5)
         while radio2.available():
             recv_buffer = []
             radio2.read(recv_buffer, radio2.getDynamicPayloadSize())
