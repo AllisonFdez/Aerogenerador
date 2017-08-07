@@ -24,7 +24,7 @@ radio2.setPALevel(NRF24.PA_MAX)
 
 radio2.setAutoAck(True)
 radio2.enableDynamicPayloads()
-radio2.setCRCLength(RF24_CRC_16)
+radio2.setCRCLength(16)
 radio2.enableAckPayload()
 
 radio2.openReadingPipe(1, pipes[0])
