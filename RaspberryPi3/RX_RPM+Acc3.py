@@ -40,7 +40,8 @@ zvec=[]
 while True:
     for x in range(0,30):
         while not radio2.available():
-            time.sleep(10000/1000000.0)
+            print("No radio available yet.")
+            time.sleep(1000)
         while radio2.available():
             recv_buffer = []
             radio2.read(recv_buffer, radio2.getDynamicPayloadSize())
