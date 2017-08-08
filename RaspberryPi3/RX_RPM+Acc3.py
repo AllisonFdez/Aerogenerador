@@ -35,7 +35,7 @@ yvec=[]
 zvec=[]
 
 while True:
-    while radio2.available(pipes[0]) or radio2.available(pipes[1]):
+    while radio2.available(0) or radio2.available(1):
         recv_buffer = []
         radio2.read(recv_buffer, radio2.getDynamicPayloadSize())
         if recv_buffer[0] =='a':
