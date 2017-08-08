@@ -35,26 +35,23 @@ yvec=[]
 zvec=[]
 
 while True:
-    for x in range(0,30):
-        while not radio2.available():
-            print("No radio available yet.")
-            time.sleep(5)
-        while radio2.available():
-            recv_buffer = []
-            radio2.read(recv_buffer, radio2.getDynamicPayloadSize())
-            if recv_buffer[0] =='a':
+    while radio2.available(pipes[0]) or radio2.available(pipes[1]):
+        recv_buffer = []
+        radio2.read(recv_buffer, radio2.getDynamicPayloadSize())
+        if recv_buffer[0] =='a':
+            str_buf=''.join(recv_buffer)
+            xvec.append(int(str_buf[1:4]))
+            yvec.append(int(str_buf[4:7]))
+            zvec.append(int(str_buf[7:10]))
+            xvec.append(int(str_buf[10:13]))
+            yvec.append(int(str_buf[13:16]))
+            zvec.append(int(str_buf[16:19]))
+            xvec.append(int(str_buf[19:22]))
+            yvec.append(int(str_buf[22:25]))
+            zvec.append(int(str_buf[25:28]))
+        else:
+            if recv_buffer[0] =='r':
                 str_buf=''.join(recv_buffer)
-                xvec.append(int(str_buf[1:4]))
-                yvec.append(int(str_buf[4:7]))
-                zvec.append(int(str_buf[7:10]))
-                xvec.append(int(str_buf[10:13]))
-                yvec.append(int(str_buf[13:16]))
-                zvec.append(int(str_buf[16:19]))
-                xvec.append(int(str_buf[19:22]))
-                yvec.append(int(str_buf[22:25]))
-                zvec.append(int(str_buf[25:28]))
-            else:
-                if recv_buffer[0] =='r':
-                    str_buf=''.join(recv_buffer)
-                    rpm=int(str_buf[1:5])
-        
+                rpm=int(str_buf[1:5])
+    print("No radio available yet.")
+    time.sleep(2)
